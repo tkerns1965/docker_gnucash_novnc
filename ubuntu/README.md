@@ -1,1 +1,0 @@
-# docker_ubuntu_vnc
