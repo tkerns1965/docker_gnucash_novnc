@@ -59,3 +59,5 @@ RUN mkdir -p $HOME/gnucash_source && \
     cmake -D CMAKE_INSTALL_PREFIX=$HOME/gnucash_cmake -D WITH_AQBANKING=OFF -D WITH_OFX=OFF $HOME/gnucash_source && \
     make && \
     make install
+
+RUN apt install -y evince
