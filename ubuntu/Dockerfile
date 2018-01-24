@@ -38,7 +38,7 @@ CMD ["/bootstrap.sh"]
 
 RUN mkdir -p $HOME/gnucash_source && \
     wget -qO- https://sourceforge.net/projects/gnucash/files/gnucash%20%28stable%29/2.6.19/gnucash-2.6.19.tar.gz | \
-        tar xz --strip 1 -C $HOME/gnucash_source
+        tar xz --strip 1 -C $HOME/gnucash_source && \
     apt install -y \
         build-essential \
         cmake \
