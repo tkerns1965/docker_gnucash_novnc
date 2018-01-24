@@ -10,8 +10,8 @@ services:
             - VNC_PASSWORD=${VNC_PASSWORD}
         image: gnucash_novnc
         container_name: gnucash_novnc1
-        # volumes:
-            # - /srv/docker_volumes/letsencrypt:/etc/letsencrypt
+        volumes:
+            - /mnt/nfs/svr1/documents:/mnt/nfs_svr1_documents
         ports:
             - "5901:5901"
             - "6901:6901"
