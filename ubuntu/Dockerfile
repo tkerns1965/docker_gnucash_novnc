@@ -62,7 +62,7 @@ RUN mkdir -p $HOME/gnucash_source && \
 
 RUN apt install -y evince
 
-RUN groupadd -r -g 901 tkerns && \
-    useradd -c "Tony Kerns" -d $HOME/docker -g 901 -r -s /sbin/nologin -u 901 tkerns
+RUN groupadd -g 1000 tkerns && \
+    useradd -c "Tony Kerns" -d $HOME/docker -g 1000 -u 901 tkerns
 
 USER tkerns
