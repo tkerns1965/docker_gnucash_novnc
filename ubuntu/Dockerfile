@@ -65,4 +65,4 @@ RUN apt install -y evince
 RUN groupadd -g 1000 tkerns && \
     useradd -c "Tony Kerns" -d $HOME/docker -g 1000 -u 901 tkerns
 
-USER tkerns
+# USER tkerns
