@@ -34,8 +34,6 @@ COPY bootstrap.sh .
 
 RUN chmod u+x bootstrap.sh
 
-CMD ["/bootstrap.sh"]
-
 RUN mkdir -p $HOME/gnucash_source && \
     wget -qO- https://sourceforge.net/projects/gnucash/files/gnucash%20%28stable%29/2.6.19/gnucash-2.6.19.tar.gz | \
         tar xz --strip 1 -C $HOME/gnucash_source && \
@@ -65,8 +63,10 @@ RUN apt install -y evince
 RUN groupadd -g 1000 tkerns && \
     useradd -c "Tony Kerns" -d $HOME/docker -g 1000 -u 901 tkerns
 
-# USER tkerns
+USER tkerns
+
 ENV GOSU_VERSION 1.10
+
 RUN set -ex; \
 	dpkgArch="$(dpkg --print-architecture | awk -F- '{ print $NF }')"; \
 	wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch"; \
@@ -77,3 +77,5 @@ RUN set -ex; \
 	rm -r "$GNUPGHOME" /usr/local/bin/gosu.asc; \
 	chmod +x /usr/local/bin/gosu; \
 	gosu nobody true
+
+CMD ["gosu","root","/bootstrap.sh"]
