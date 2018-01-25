@@ -60,11 +60,6 @@ RUN mkdir -p $HOME/gnucash_source && \
 
 RUN apt install -y evince
 
-RUN groupadd -g 1000 tkerns && \
-    useradd -c "Tony Kerns" -d $HOME/docker -g 1000 -u 901 tkerns
-
-USER tkerns
-
 ENV GOSU_VERSION 1.10
 
 RUN set -ex; \
@@ -77,5 +72,10 @@ RUN set -ex; \
 	rm -r "$GNUPGHOME" /usr/local/bin/gosu.asc; \
 	chmod +x /usr/local/bin/gosu; \
 	gosu nobody true
+
+RUN groupadd -g 1000 tkerns && \
+    useradd -c "Tony Kerns" -d $HOME/docker -g 1000 -u 901 tkerns
+
+USER tkerns
 
 CMD ["gosu","root","/bootstrap.sh"]
